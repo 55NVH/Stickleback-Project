@@ -3,10 +3,10 @@ Zihan Wang, 2025
 ## Raw data Processing
 **Input**: config.yaml, Snakefile, ref genome(fa or fa.gz), annotation (gff, gtf, gff3), may need hand-input strandness
 *Process*
-trimming: trimgalore 
-post trimming QC: FastQC
-alignment：STAR
-**Output**:(1)featureCount.txt (2)RPKM bigwig (3)MultiQC
+	trimming: trimgalore 
+	post trimming QC: FastQC
+	alignment：STAR
+	**Output**:(1)featureCount.txt (2)RPKM bigwig (3)MultiQC
 
 ## DEG ANAlysis
 *Standard DEG*: in progress
