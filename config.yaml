@@ -1,0 +1,45 @@
+# Define pipeline paths
+global:
+  snakemake: /home/meoc/workflow/RNA-seq-pipeline/src # Folder containing Snakemake file, executables and scripts folders
+  results:  /home/meoc/workflow/RNA-seq-pipeline/20260125_Sb6mo # Folder where the outputs will be placed
+  remove_duplicates: false # Either 'true' or 'false'
+
+# Define barcode (B) and UMI (U) pattern at the 5'-end of the read
+barcode: false # Either a string of 'B's and/or 'U's or 'false'
+
+#define QC toggles
+qc: 
+  fastqc_post: true
+  bamcoverage: true
+# Define mapping and annotation paths
+genome:
+  path: /mnt/d/20251212_Sb2yr/genome # Folder containing the genome file
+  name: GCF_016920845.1.fa # FASTA file (can be gzipped)
+annotation:
+  path: /mnt/d/20251212_Sb2yr/genome # Folder containing the annotation file
+  name: GCF_016920845.1.gtf # GTF or GFF3 file (can be gzipped)
+alignment:
+  path: /mnt/d/20251212_Sb2yr/genome/index # Folder containing the index files
+  ribo: false # Bowtie2 index basename or FASTA file (can be gzipped; the index will be created)
+  star: STAR_GCF_016920845_1 # Folder containing the STAR index (it will be created)
+
+# Define samples (multiple experiments and library types can be specified in the same config file)
+samples:
+  # Single-end_sample: [] # Example of single-end experiment
+  FG_0dpa_repA: ["/mnt/d/20260125_Sb6mo/RNA/FG_6mo_0_A_1.fq.gz", "/mnt/d/20260125_Sb6mo/RNA/FG_6mo_0_A_2.fq.gz"] # Example of paired-end experiment
+  FG_0dpa_repB: ["/mnt/d/20260125_Sb6mo/RNA/FG_6mo_0_B_1.fq.gz", "/mnt/d/20260125_Sb6mo/RNA/FG_6mo_0_B_2.fq.gz"]
+  FG_0dpa_repC: ["/mnt/d/20260125_Sb6mo/RNA/FG_6mo_0_C_1.fq.gz", "/mnt/d/20260125_Sb6mo/RNA/FG_6mo_0_C_2.fq.gz"]
+  
+  FG_7dpa_repA: ["/mnt/d/20260125_Sb6mo/RNA/FG_6mo_7_A_1.fq.gz", "/mnt/d/20260125_Sb6mo/RNA/FG_6mo_7_A_2.fq.gz"]
+  FG_7dpa_repB: ["/mnt/d/20260125_Sb6mo/RNA/FG_6mo_7_B_1.fq.gz", "/mnt/d/20260125_Sb6mo/RNA/FG_6mo_7_B_2.fq.gz"]
+  FG_7dpa_repC: ["/mnt/d/20260125_Sb6mo/RNA/FG_6mo_7_C_1.fq.gz", "/mnt/d/20260125_Sb6mo/RNA/FG_6mo_7_C_2.fq.gz"]
+
+  WB_0dpa_repA: ["/mnt/d/20260125_Sb6mo/RNA/WB_6mo_0_A_1.fq.gz", "/mnt/d/20260125_Sb6mo/RNA/WB_6mo_0_A_2.fq.gz"]
+  WB_0dpa_repB: ["/mnt/d/20260125_Sb6mo/RNA/WB_6mo_0_B_1.fq.gz", "/mnt/d/20260125_Sb6mo/RNA/WB_6mo_0_B_2.fq.gz"]
+  WB_0dpa_repC: ["/mnt/d/20260125_Sb6mo/RNA/WB_6mo_0_C_1.fq.gz", "/mnt/d/20260125_Sb6mo/RNA/WB_6mo_0_C_2.fq.gz"]
+
+  WB_7dpa_repA: ["/mnt/d/20260125_Sb6mo/RNA/WB_6mo_7_A_1.fq.gz", "/mnt/d/20260125_Sb6mo/RNA/WB_6mo_7_A_2.fq.gz"]
+  WB_7dpa_repB: ["/mnt/d/20260125_Sb6mo/RNA/WB_6mo_7_B_1.fq.gz", "/mnt/d/20260125_Sb6mo/RNA/WB_6mo_7_B_2.fq.gz"]
+  WB_7dpa_repC: ["/mnt/d/20260125_Sb6mo/RNA/WB_6mo_7_C_1.fq.gz", "/mnt/d/20260125_Sb6mo/RNA/WB_6mo_7_C_2.fq.gz"]
+    # Define sequencing type
+seq_type: "RNAseq" # RNAseq or NETseq (NETseq will not allow spliced reads alignment)
